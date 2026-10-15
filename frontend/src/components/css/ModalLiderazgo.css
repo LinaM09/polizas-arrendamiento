@@ -1,0 +1,220 @@
+/* Modal */
+
+.modal-liderazgo {
+  width: min(920px, calc(100% - 32px));
+  max-height: 88vh;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  color: #18332e;
+  background: #fff;
+  box-shadow: 0 32px 100px rgb(0 0 0 / 30%);
+  overflow: hidden;
+}
+
+.modal-liderazgo[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-liderazgo::backdrop {
+  background: rgb(10 30 23 / 65%);
+  backdrop-filter: blur(6px);
+}
+
+.modal-liderazgo-cabecera {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px 32px;
+  color: #fff;
+  background: linear-gradient(120deg, #103c32, #236047);
+}
+
+.modal-liderazgo-cabecera span {
+  display: inline-block;
+  padding: 5px 9px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 6px;
+  color: #d0ebda;
+  background: rgb(255 255 255 / 8%);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.modal-liderazgo-cabecera h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.modal-liderazgo-cabecera button {
+  flex-shrink: 0;
+  min-height: 40px;
+  border: 1px solid rgb(255 255 255 / 30%);
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+.modal-liderazgo-cabecera button:hover {
+  border-color: rgb(255 255 255 / 60%);
+  background: rgb(255 255 255 / 20%);
+}
+
+.modal-liderazgo-cabecera button:focus-visible {
+  outline: 3px solid #f0cf79;
+  outline-offset: 3px;
+}
+
+.modal-liderazgo-contenido {
+  min-height: 0;
+  padding: 30px 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #a8bfb0 #f4f7f5;
+}
+
+.modal-liderazgo .doc-bloque {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.modal-liderazgo .doc-bloque > summary {
+  display: none;
+}
+
+.modal-liderazgo .doc-contenido {
+  padding: 0;
+}
+
+.modal-liderazgo .doc-contenido h3 {
+  padding-top: 24px;
+  margin-top: 28px;
+  border-top: 1px solid #e4ece6;
+  font-size: 18px;
+}
+
+.modal-liderazgo .doc-contenido li + li {
+  margin-top: 14px;
+}
+
+/* Cohete y mensaje */
+
+.cohete-contenedor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 6px 0;
+}
+
+.cohete-boton {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 1px solid #174d3e;
+  border-radius: 50%;
+  background: #174d3e;
+  box-shadow: 0 6px 16px rgb(23 77 62 / 18%);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.cohete-icono {
+  display: block;
+  font-size: 30px;
+  transition: transform 180ms ease;
+}
+
+.cohete-boton:hover:not(:disabled),
+.cohete-boton:focus-visible {
+  border-color: #236b50;
+  background: #236b50;
+  box-shadow: 0 10px 22px rgb(23 77 62 / 28%);
+  transform: translateY(-4px);
+}
+
+.cohete-boton:hover .cohete-icono,
+.cohete-boton:focus-visible .cohete-icono {
+  transform: rotate(-10deg) translateY(-2px);
+}
+
+.cohete-mensaje {
+  padding: 10px 14px;
+  border: 1px solid #d6e4da;
+  border-radius: 10px;
+  color: #24543c;
+  background: #eff7f1;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  pointer-events: none;
+}
+
+.cohete-contenedor:hover .cohete-mensaje,
+.cohete-contenedor:focus-within .cohete-mensaje {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Adaptación a pantallas pequeñas */
+
+@media (max-width: 640px) {
+  .modal-liderazgo {
+    width: calc(100% - 20px);
+    max-height: 92vh;
+    border-radius: 18px;
+  }
+
+  .modal-liderazgo-cabecera {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 24px 20px;
+  }
+
+  .modal-liderazgo-contenido {
+    padding: 24px 20px;
+  }
+}
+
+@media (hover: none) {
+  .cohete-mensaje {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cohete-boton,
+  .cohete-icono,
+  .cohete-mensaje {
+    transition: none;
+    transform: none;
+  }
+
+  .cohete-boton:hover:not(:disabled),
+  .cohete-boton:focus-visible,
+  .cohete-boton:hover .cohete-icono,
+  .cohete-boton:focus-visible .cohete-icono {
+    transform: none;
+  }
+}
